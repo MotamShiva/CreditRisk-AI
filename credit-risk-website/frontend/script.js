@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize page-specific logic
     const path = window.location.pathname;
-    
+
     if (path.includes('predict.html')) {
         initPredictPage();
     } else if (path.includes('result.html')) {
@@ -39,12 +39,12 @@ function initPredictPage() {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Hide previous errors
         const errorMsg = document.getElementById('error-message');
         errorMsg.classList.add('hide');
         errorMsg.textContent = '';
-        
+
         // Collect data
         const id = new Date().getTime(); // unique timestamp ID
         const dateObj = new Date();
@@ -80,14 +80,14 @@ function initPredictPage() {
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const spinner = document.getElementById('spinner');
-        
+
         submitBtn.disabled = true;
         btnText.textContent = "Predicting...";
         spinner.classList.remove('hide');
 
         try {
             // Determine backend URL (handle local Live Server vs Flask hosting)
-            const backendUrl = window.location.port === '5500' ? 'http://127.0.0.1:5001' : '';
+            const backendUrl = window.location.port === '5500' ? 'http://127.0.0.1:5001' : 'https://creditrisk-ai-elrr.onrender.com';
 
             // Fetch API POST to backend
             const response = await fetch(`${backendUrl}/predict`, {
@@ -112,7 +112,7 @@ function initPredictPage() {
             }
 
             const data = await response.json();
-            
+
             // Add result to payload
             payload.result = data.result;
             payload.confidence = data.confidence;
@@ -121,7 +121,7 @@ function initPredictPage() {
 
             // Save Temporary result
             localStorage.setItem('currentPrediction', JSON.stringify(payload));
-            
+
             // Redirect
             window.location.href = 'result.html';
 
@@ -155,7 +155,7 @@ function initResultPage() {
 
     // Populate UI
     document.getElementById('result-user-name').textContent = `Prediction for ${data.name}`;
-    
+
     const badge = document.getElementById('result-badge');
     badge.textContent = `${data.result} ${data.result === 'Low Risk' ? '🟢' : '🔴'}`;
     if (data.result === 'Low Risk') {
@@ -171,7 +171,7 @@ function initResultPage() {
     if (!data.savedToHistory) {
         // Read history
         let history = JSON.parse(localStorage.getItem('creditRiskHistory') || '[]');
-        
+
         // Remove 'savedToHistory' and 'message' for neatness if desired, but we can keep it
         const historyRecord = {
             id: data.id,
@@ -192,7 +192,7 @@ function initResultPage() {
 
         history.push(historyRecord);
         localStorage.setItem('creditRiskHistory', JSON.stringify(history));
-        
+
         // Mark current as saved to prevent refresh duplicates
         data.savedToHistory = true;
         localStorage.setItem('currentPrediction', JSON.stringify(data));
@@ -213,7 +213,7 @@ function initHistoryPage() {
 
     function renderHistory(dataToRender) {
         container.innerHTML = '';
-        
+
         if (dataToRender.length === 0) {
             container.classList.add('hide');
             emptyState.classList.remove('hide');
@@ -273,7 +273,7 @@ function initHistoryPage() {
     function deleteRecord(id) {
         history = history.filter(item => item.id !== id);
         localStorage.setItem('creditRiskHistory', JSON.stringify(history));
-        
+
         // Re-filter if search is active
         const searchTerm = searchBar.value.toLowerCase();
         if (searchTerm) {
