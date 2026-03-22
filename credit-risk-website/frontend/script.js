@@ -124,11 +124,13 @@ function initPredictPage() {
             payload.savedToHistory = false; // Flag to prevent duplicate saves
 
             // Save Temporary result
+            // Save Temporary result
             localStorage.setItem('currentPrediction', JSON.stringify(payload));
 
-            // Redirect
-            window.location.href = 'result.html';
-
+            // Small delay to ensure localStorage is saved on mobile
+            setTimeout(() => {
+                window.location.href = 'result.html';
+            }, 300);
         } catch (error) {
             showError(error.message || "Failed to connect to the server. Is it running?");
         } finally {
