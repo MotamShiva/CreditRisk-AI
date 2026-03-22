@@ -132,6 +132,7 @@ function initPredictPage() {
         } catch (error) {
             showError(error.message || "Failed to connect to the server. Is it running?");
         } finally {
+            clearTimeout(wakeMsg);
             submitBtn.disabled = false;
             btnText.textContent = "Predict";
             spinner.classList.add('hide');
