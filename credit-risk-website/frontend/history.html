@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>History - AI Credit Risk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* History-specific styles */
+        .history-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        @media (max-width: 480px) {
+            .history-controls {
+                flex-direction: column;
+            }
+            .search-input {
+                width: 100%;
+            }
+            #clear-all-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">CreditRisk AI</div>
+        <div class="hamburger" id="hamburger">☰</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="predict.html">Predict</a></li>
+            <li><a href="history.html" class="active">History</a></li>
+            <li><a href="index.html#about">About</a></li>
+        </ul>
+    </nav>
+
+    <main class="section form-page">
+        <div class="container">
+            <div class="history-header">
+                <h2>Prediction History</h2>
+                <div class="badge-count" id="total-count">Total Records: 0</div>
+            </div>
+            
+            <div class="history-controls">
+                <input type="text" id="search-bar" class="search-input" placeholder="Search by name...">
+                <button class="btn btn-danger" id="clear-all-btn">Clear All History</button>
+            </div>
+            
+            <div id="history-container" class="history-list">
+                <!-- History cards rendered here -->
+            </div>
+            
+            <div id="empty-state" class="empty-state hide">
+                <div class="empty-icon">📁</div>
+                <h3>No predictions yet.</h3>
+                <p>Try a prediction first!</p>
+                <a href="predict.html" class="btn btn-primary" style="margin-top: 15px; display: inline-block;">Go to Predict</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AI Credit Risk Prediction System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

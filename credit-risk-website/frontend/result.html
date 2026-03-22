@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Result - AI Credit Risk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">CreditRisk AI</div>
+        <div class="hamburger" id="hamburger">☰</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="predict.html">Predict</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="index.html#about">About</a></li>
+        </ul>
+    </nav>
+
+    <main class="section form-page">
+        <div class="container text-center">
+            <h2 id="result-user-name" style="margin-bottom: 20px;">Loading Result...</h2>
+            
+            <div class="card result-card" id="result-card">
+                <div class="result-badge pulse" id="result-badge">
+                   <!-- Low or High Risk text inserted via JS -->
+                </div>
+                <div class="confidence">
+                    Confidence: <span id="result-confidence">--%</span>
+                </div>
+                <p class="advice-message" id="result-message">--</p>
+                
+                <div class="action-buttons">
+                    <a href="predict.html" class="btn btn-secondary">Try Again</a>
+                    <a href="history.html" class="btn btn-primary">View History</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AI Credit Risk Prediction System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
