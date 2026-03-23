@@ -91,7 +91,7 @@ function initPredictPage() {
         }, 5000);
         try {
             // Determine backend URL (handle local Live Server vs Flask hosting)
-            const backendUrl = 'https://disparagingly-acrobatic-waylon.ngrok-free.app';
+            const backendUrl = window.location.port === '5500' ? 'http://127.0.0.1:5001' : 'https://disparagingly-acrobatic-waylon.ngrok-free.app';
 
             // Fetch API POST to backend
             const response = await fetch(`${backendUrl}/predict`, {
