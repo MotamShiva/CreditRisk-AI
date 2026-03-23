@@ -98,12 +98,8 @@ function initPredictPage() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true',
                     'X-Pinggy-No-Screen': 'true'
-                },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Pinggy-No-Screen': 'true',
-                    'ngrok-skip-browser-warning': 'true'   // ← add this line
                 },
                 body: JSON.stringify(payload)
             });
