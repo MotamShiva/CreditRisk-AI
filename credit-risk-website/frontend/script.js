@@ -91,7 +91,7 @@ function initPredictPage() {
         }, 5000);
         try {
             // Determine backend URL (handle local Live Server vs Flask hosting)
-            const backendUrl = window.location.port === '5500' ? 'http://127.0.0.1:5001' : 'https://creditrisk-ai-elrr.onrender.com';
+            const backendUrl = 'https://disparagingly-acrobatic-waylon.ngrok-free.app';
 
             // Fetch API POST to backend
             const response = await fetch(`${backendUrl}/predict`, {
@@ -99,6 +99,11 @@ function initPredictPage() {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Pinggy-No-Screen': 'true'
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Pinggy-No-Screen': 'true',
+                    'ngrok-skip-browser-warning': 'true'   // ← add this line
                 },
                 body: JSON.stringify(payload)
             });
